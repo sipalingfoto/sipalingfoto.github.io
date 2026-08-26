@@ -52,7 +52,6 @@ body {
   border: 1px solid var(--border);
   background: var(--surface);
   color: var(--text);
-  font-size: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -61,8 +60,13 @@ body {
   transition: background 0.25s ease, border-color 0.25s ease;
 }
 
-html[data-theme="dark"] .theme-toggle::after { content: "☀️"; }
-html[data-theme="light"] .theme-toggle::after { content: "🌙"; }
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon { flex: 0 0 20px; }
+
+html[data-theme="dark"] .icon-sun { display: block; }
+html[data-theme="dark"] .icon-moon { display: none; }
+html[data-theme="light"] .icon-sun { display: none; }
+html[data-theme="light"] .icon-moon { display: block; }
 
 .container {
   width: 100%;
@@ -83,7 +87,9 @@ html[data-theme="light"] .theme-toggle::after { content: "🌙"; }
 }
 
 .badge {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 12px;
   font-weight: 600;
   letter-spacing: 0.12em;
@@ -94,6 +100,8 @@ html[data-theme="light"] .theme-toggle::after { content: "🌙"; }
   border-radius: 999px;
   padding: 6px 14px;
 }
+
+.badge svg { flex: 0 0 14px; }
 
 .hero h1 {
   font-size: clamp(28px, 8vw, 38px);
@@ -122,6 +130,21 @@ html[data-theme="light"] .theme-toggle::after { content: "🌙"; }
 
 .feature .emoji { font-size: 24px; line-height: 1.2; }
 
+.feature-icon {
+  width: 36px;
+  height: 36px;
+  flex: 0 0 36px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.feature-icon svg { flex: 0 0 22px; }
+
 .feature h3 { font-size: 15px; font-weight: 600; }
 .feature p { color: var(--muted); font-size: 14px; margin-top: 2px; }
 
@@ -144,6 +167,7 @@ html[data-theme="light"] .theme-toggle::after { content: "🌙"; }
 
 .btn-primary:hover { filter: brightness(1.06); }
 .btn-primary:active { transform: scale(0.98); }
+.btn-primary svg { flex: 0 0 18px; }
 
 .footer {
   margin-top: 48px;
@@ -153,6 +177,14 @@ html[data-theme="light"] .theme-toggle::after { content: "🌙"; }
 }
 
 .footer a { color: inherit; }
+
+.heart-icon {
+  display: inline-flex;
+  vertical-align: middle;
+  margin: 0 2px;
+  position: relative;
+  top: -1px;
+}
 
 /* ---------- Microsite ---------- */
 .profile-head { text-align: center; padding: 24px 0 8px; }
@@ -256,7 +288,8 @@ html[data-theme="light"] .theme-toggle::after { content: "🌙"; }
   gap: 8px;
 }
 
-.error-box .icon { font-size: 44px; }
+.error-box .icon { display: flex; align-items: center; justify-content: center; color: var(--muted); }
+.error-box .icon svg { flex: 0 0 44px; }
 .error-box h2 { font-size: 20px; font-weight: 800; }
 .error-box p { color: var(--muted); font-size: 14px; max-width: 300px; }
 
