@@ -1,4 +1,4 @@
-const CACHE = "sf-app-v1";
+const CACHE = "sf-app-v2";
 
 const APP_SHELL = [
   "./",
@@ -53,16 +53,21 @@ self.addEventListener("fetch", (e) => {
   }
 
   if (url.origin === location.origin) {
+    // stale-while-revalidate: sajikan cache seketika, update di latar belakang,
+    // supaya update aset (CSS/JS) otomatis tersebar tanpa menunggu bump versi.
     e.respondWith(
-      caches.match(e.request).then(
-        (hit) =>
-          hit ||
-          fetch(e.request).then((res) => {
-            const copy = res.clone();
-            caches.open(CACHE).then((cache) => cache.put(e.request, copy));
+      caches.match(e.request).then((hit) => {
+        const network = fetch(e.request)
+          .then((res) => {
+            if (res.ok) {
+              const copy = res.clone();
+              caches.open(CACHE).then((cache) => cache.put(e.request, copy));
+            }
             return res;
           })
-      )
+          .catch(() => hit);
+        return hit || network;
+      })
     );
     return;
   }
