@@ -97,6 +97,7 @@ function renderLanding() {
   app.innerHTML = `
     <main class="container">
       <section class="hero fade-up">
+        <img class="logo" src="https://sipalingfoto.my.id/sipalingfoto.svg" alt="SiPaling Foto" onerror="this.style.display='none'">
         <span class="badge">📷 Fotobooth Profesional</span>
         <h1>Abadikan Setiap Momen, Tanpa Ribet.</h1>
         <p class="tagline">Photobooth instan untuk wedding, ulang tahun, dan acara korporat. Cetak langsung, hasil rapi, harga bersahabat.</p>
@@ -112,17 +113,16 @@ function renderLanding() {
         </div>
         <div class="feature fade-up">
           <span class="emoji">📱</span>
-          <div><h3>Softcopy Online</h3><p>Semua foto bisa diunduh lewat halaman microsite khusus.</p></div>
+          <div><h3>Softcopy Online</h3><p>Semua foto bisa diunduh lewat scan pada QR Code</p></div>
         </div>
       </section>
       <div class="cta-group fade-up">
-        <a class="btn-primary" href="https://wa.me/6281234567890?text=Halo%20SiPaling%20Foto%2C%20saya%20mau%20tanya%20paket%20fotobooth" target="_blank" rel="noopener">💬 Konsultasi via WhatsApp</a>
+        <a class="btn-primary" href="https://wa.me/628979000017?text=Halo%20SiPaling%20Foto%2C%20saya%20mau%20tanya%20paket%20fotobooth" target="_blank" rel="noopener">💬 Konsultasi via WhatsApp</a>
       </div>
-      <footer class="footer fade-up">© ${new Date().getFullYear()} SiPaling Foto</footer>
+      <footer class="footer fade-up">Dibuat dengan ❤️ oleh <a href="https://sipalingfoto.my.id" target="_blank" rel="noopener">SiPaling Foto</a></footer>
     </main>
   `;
 }
-// CATATAN: nomor WA di atas adalah placeholder — ganti dengan nomor asli.
 
 /* ---------- Microsite ---------- */
 
@@ -211,7 +211,7 @@ function renderProfile(p) {
         ${p.bio ? `<p class="bio fade-up">${esc(p.bio)}</p>` : ""}
       </header>
       <nav class="links">${linkButtons}</nav>
-      <footer class="footer fade-up">Dibuat dengan ❤️ oleh SiPaling Foto</footer>
+      <footer class="footer fade-up">Dibuat dengan ❤️ oleh <a href="https://sipalingfoto.my.id" target="_blank" rel="noopener">SiPaling Foto</a></footer>
     </main>
   `;
 

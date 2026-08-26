@@ -74,6 +74,14 @@ html[data-theme="light"] .theme-toggle::after { content: "🌙"; }
 /* ---------- Landing ---------- */
 .hero { text-align: center; padding: 40px 0 8px; }
 
+.logo {
+  display: inline-block;
+  width: 140px;
+  max-height: 140px;
+  object-fit: contain;
+  margin-bottom: 18px;
+}
+
 .badge {
   display: inline-block;
   font-size: 12px;
