@@ -55,10 +55,39 @@ function esc(s) {
 }
 
 function init() {
+  initTheme();
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("./sw.js").catch(() => {});
+    });
+  }
   const raw = new URLSearchParams(location.search).get("_");
   const code = raw ? raw.trim().toLowerCase() : null;
   if (code) renderMicrosite(code);
   else renderLanding();
+}
+
+/* ---------- Tema light/dark ---------- */
+
+function initTheme() {
+  const root = document.documentElement;
+  const btn = document.getElementById("theme-toggle");
+  const meta = document.querySelector('meta[name="theme-color"]');
+
+  const apply = () => {
+    const theme = root.getAttribute("data-theme") === "light" ? "light" : "dark";
+    if (meta) meta.setAttribute("content", theme === "light" ? "#f6f6f8" : "#0e1014");
+  };
+  apply();
+
+  btn?.addEventListener("click", () => {
+    const next = root.getAttribute("data-theme") === "light" ? "dark" : "light";
+    root.setAttribute("data-theme", next);
+    try {
+      localStorage.setItem("sf-theme", next);
+    } catch (e) {}
+    apply();
+  });
 }
 
 /* ---------- Landing ---------- */
@@ -182,7 +211,7 @@ function renderProfile(p) {
         ${p.bio ? `<p class="bio fade-up">${esc(p.bio)}</p>` : ""}
       </header>
       <nav class="links">${linkButtons}</nav>
-      <footer class="footer fade-up">Dibuat dengan 📷 SiPaling Foto</footer>
+      <footer class="footer fade-up">Dibuat dengan ❤️ oleh SiPaling Foto</footer>
     </main>
   `;
 
